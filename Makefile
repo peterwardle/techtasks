@@ -19,5 +19,5 @@ test:
 
 .PHONY: clean
 clean:
-	docker-compose down --remove-orphans --volumes
+	docker-compose down --remove-orphans --volumes --rmi 'local'
 	docker-compose rm -v --force

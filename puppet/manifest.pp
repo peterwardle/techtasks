@@ -44,7 +44,7 @@ file { '/opt/housekeeping/bin/logrotate.py':
 cron { 'run-housekeeping':
     ensure  => present,
     command => '/opt/housekeeping/bin/logrotate.py /app/logs',
-    user    => 'root',
+    user    => 'housekeeping',
     hour    => 1,
     require => [Package['python'], File['/opt/housekeeping/bin/logrotate.py'], File['/app/logs']]
 }
@@ -53,7 +53,7 @@ file { ['/app', '/app/logs']:
     ensure  => directory,
     owner   => 'app',
     group   => 'housekeeping',
-    mode    => '0654',
+    mode    => '0664',
     require => [User['app'], Group['housekeeping']]
 }
 
